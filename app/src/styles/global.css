@@ -33,7 +33,7 @@ body {
   color: #0a0a0a;
 }
 
-/* ---- 背景细网格 + 顶部光晕 ---- */
+/* ========== 背景效果 ========== */
 .page-grid {
   position: fixed;
   inset: 0;
@@ -60,7 +60,111 @@ body {
   pointer-events: none;
 }
 
-/* ---- 区块标签 ---- */
+/* 悬浮粒子 */
+.particles {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--color-accent);
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: float 20s infinite ease-in-out;
+}
+.particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 25s; }
+.particle:nth-child(2) { left: 20%; animation-delay: 2s; animation-duration: 20s; }
+.particle:nth-child(3) { left: 30%; animation-delay: 4s; animation-duration: 28s; }
+.particle:nth-child(4) { left: 40%; animation-delay: 1s; animation-duration: 22s; }
+.particle:nth-child(5) { left: 50%; animation-delay: 3s; animation-duration: 26s; }
+.particle:nth-child(6) { left: 60%; animation-delay: 5s; animation-duration: 24s; }
+.particle:nth-child(7) { left: 70%; animation-delay: 2.5s; animation-duration: 21s; }
+.particle:nth-child(8) { left: 80%; animation-delay: 4.5s; animation-duration: 27s; }
+.particle:nth-child(9) { left: 90%; animation-delay: 1.5s; animation-duration: 23s; }
+.particle:nth-child(10) { left: 15%; animation-delay: 3.5s; animation-duration: 29s; }
+@keyframes float {
+  0%, 100% { transform: translateY(100vh) scale(1); opacity: 0; }
+  10% { opacity: 0.4; }
+  50% { transform: translateY(50vh) scale(1.2); opacity: 0.6; }
+  90% { opacity: 0.3; }
+}
+
+/* ========== 高级文字效果 ========== */
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-accent) 0%, #ffffff 50%, var(--color-accent) 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 4s ease infinite;
+}
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* 文字打字效果 */
+.typewriter {
+  overflow: hidden;
+  border-right: 2px solid var(--color-accent);
+  white-space: nowrap;
+  animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--color-accent); }
+}
+
+/* 故障效果 Glitch */
+.glitch {
+  position: relative;
+}
+.glitch:hover::before,
+.glitch:hover::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.glitch:hover::before {
+  animation: glitch-1 0.3s infinite linear alternate-reverse;
+  color: var(--color-accent);
+  z-index: -1;
+}
+.glitch:hover::after {
+  animation: glitch-2 0.3s infinite linear alternate-reverse;
+  color: #ff6b6b;
+  z-index: -2;
+}
+@keyframes glitch-1 {
+  0% { clip-path: inset(20% 0 60% 0); transform: translate(-3px, 0); }
+  20% { clip-path: inset(60% 0 10% 0); transform: translate(3px, 0); }
+  40% { clip-path: inset(30% 0 40% 0); transform: translate(-2px, 0); }
+  60% { clip-path: inset(70% 0 5% 0); transform: translate(2px, 0); }
+  80% { clip-path: inset(10% 0 80% 0); transform: translate(-1px, 0); }
+  100% { clip-path: inset(50% 0 30% 0); transform: translate(1px, 0); }
+}
+@keyframes glitch-2 {
+  0% { clip-path: inset(70% 0 10% 0); transform: translate(3px, 0); }
+  20% { clip-path: inset(20% 0 50% 0); transform: translate(-3px, 0); }
+  40% { clip-path: inset(50% 0 30% 0); transform: translate(2px, 0); }
+  60% { clip-path: inset(10% 0 70% 0); transform: translate(-2px, 0); }
+  80% { clip-path: inset(80% 0 5% 0); transform: translate(1px, 0); }
+  100% { clip-path: inset(40% 0 40% 0); transform: translate(-1px, 0); }
+}
+
+/* ========== 区块标签 ========== */
 .section-label {
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -78,7 +182,7 @@ body {
   background: var(--color-line);
 }
 
-/* ---- 按钮 ---- */
+/* ========== 高级按钮 ========== */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -91,12 +195,33 @@ body {
   color: var(--color-ink);
   background: transparent;
   border-radius: 999px;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease,
-    transform 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+  opacity: 0.3;
+}
+.btn:hover::before {
+  width: 300px;
+  height: 300px;
 }
 .btn:hover {
   border-color: var(--color-ink);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 40px -10px rgb(184 255 101 / 0.3);
+}
+.btn:active {
+  transform: translateY(-1px);
 }
 .btn-primary {
   background: var(--color-accent);
@@ -108,27 +233,71 @@ body {
   background: #cfff8f;
   border-color: #cfff8f;
   color: #0a0a0a;
+  box-shadow: 0 15px 50px -10px rgb(184 255 101 / 0.5);
 }
 
-/* ---- 卡片 ---- */
+/* 按钮波纹效果 */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(0);
+  animation: ripple-effect 0.6s linear;
+  pointer-events: none;
+}
+@keyframes ripple-effect {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* ========== 高级卡片 ========== */
 .card {
   background: var(--color-card);
   border: 1px solid var(--color-line);
   border-radius: 14px;
-  transition: border-color 0.25s ease, transform 0.25s ease,
-    box-shadow 0.25s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(184, 255, 101, 0.03) 100%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.card:hover::before {
+  opacity: 1;
 }
 .card:hover {
-  border-color: rgb(184 255 101 / 0.45);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 40px -18px rgb(184 255 101 / 0.15);
+  border-color: rgb(184 255 101 / 0.5);
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 20px 60px -20px rgb(184 255 101 / 0.25);
+}
+.card-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, var(--color-accent), transparent 30%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  animation: rotate-glow 4s linear infinite;
+  z-index: -1;
+}
+.card:hover .card-glow {
+  opacity: 0.1;
+}
+@keyframes rotate-glow {
+  to { transform: rotate(360deg); }
 }
 
-/* ---- 滚动入场 ---- */
+/* ========== 滚动入场动画 ========== */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .reveal.in {
   opacity: 1;
@@ -140,7 +309,38 @@ body {
 .reveal-d4 { transition-delay: 0.32s; }
 .reveal-d5 { transition-delay: 0.4s; }
 
-/* ---- 状态灯 ---- */
+/* 滚动滑入 */
+.slide-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.slide-left.in {
+  opacity: 1;
+  transform: none;
+}
+.slide-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.slide-right.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* 缩放入场 */
+.zoom-in {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.zoom-in.in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ========== 状态灯 ========== */
 .pulse-dot {
   width: 8px;
   height: 8px;
@@ -150,16 +350,25 @@ body {
 }
 @keyframes pulse {
   0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgb(184 255 101 / 0.5); }
-  50% { opacity: 0.55; box-shadow: 0 0 0 6px rgb(184 255 101 / 0); }
+  50% { opacity: 0.55; box-shadow: 0 0 0 8px rgb(184 255 101 / 0); }
 }
 
-/* ---- 时间轴 ---- */
+/* 呼吸灯效果 */
+.breathe {
+  animation: breathe 3s ease-in-out infinite;
+}
+@keyframes breathe {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* ========== 时间轴 ========== */
 .timeline-rail {
   position: absolute;
   left: 11px;
   top: 8px;
   bottom: 8px;
-  width: 1px;
+  width: 2px;
   background: linear-gradient(
     to bottom,
     var(--color-accent),
@@ -167,11 +376,29 @@ body {
   );
 }
 
-/* ---- 域名卡片展开 ---- */
+/* 时间轴节点发光 */
+.timeline-node {
+  position: relative;
+}
+.timeline-node::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  opacity: 0;
+  filter: blur(8px);
+  transition: opacity 0.3s;
+}
+.timeline-node:hover::after {
+  opacity: 0.5;
+}
+
+/* ========== 域名卡片展开 ========== */
 .domain-detail {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 0.35s ease;
+  transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .domain-card[open] .domain-detail,
 .domain-card.open .domain-detail {
@@ -181,19 +408,72 @@ body {
   overflow: hidden;
 }
 .domain-card .chevron {
-  transition: transform 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .domain-card.open .chevron {
   transform: rotate(180deg);
 }
 
-/* ---- 无障碍 ---- */
+/* ========== 导航栏效果 ========== */
+nav a {
+  position: relative;
+}
+nav a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--color-accent);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+nav a:hover::after {
+  width: 100%;
+}
+
+/* ========== 光标跟随效果 ========== */
+.cursor-glow {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(184, 255, 101, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+body:hover .cursor-glow {
+  opacity: 1;
+}
+
+/* ========== 滚动进度条 ========== */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-accent), #ff6b6b);
+  z-index: 9999;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.1s linear;
+}
+
+/* ========== 无障碍 ========== */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .reveal { opacity: 1; transform: none; transition: none; }
-  .pulse-dot { animation: none; }
+  .reveal, .slide-left, .slide-right, .zoom-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .pulse-dot, .breathe { animation: none; }
   .btn, .card { transition: none; }
   .btn:hover, .card:hover { transform: none; }
+  .particle { animation: none; }
 }
 
 :focus-visible {

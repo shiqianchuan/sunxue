@@ -23,9 +23,9 @@ const statusMeta = {
       <ol class="space-y-10">
         {
           timeline.map((entry) => (
-            <li class="relative">
+            <li class="relative timeline-node">
               <span
-                class={`absolute -left-12 top-1.5 w-[23px] h-[23px] rounded-full border bg-bg flex items-center justify-center ${
+                class={`absolute -left-12 top-1.5 w-[23px] h-[23px] rounded-full border bg-bg flex items-center justify-center transition-all duration-300 ${
                   entry.status === 'done'
                     ? 'border-accent/60'
                     : entry.status === 'doing'

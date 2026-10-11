@@ -20,16 +20,17 @@ const metrics = [
     <div class="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {
         metrics.map((m, i) => (
-          <div class={`card reveal reveal-d${(i % 3) + 1} p-7`}>
-            <p class="font-mono text-[11px] tracking-[0.25em] text-faint uppercase">
+          <div class={`card reveal reveal-d${(i % 3) + 1} p-7 relative overflow-hidden`}>
+            <div class="card-glow"></div>
+            <p class="font-mono text-[11px] tracking-[0.25em] text-faint uppercase relative z-10">
               {m.label}
             </p>
             <p
-              class={`mt-4 text-2xl sm:text-[1.7rem] font-bold tracking-tight ${m.accent ? 'text-accent' : ''}`}
+              class={`mt-4 text-2xl sm:text-[1.7rem] font-bold tracking-tight ${m.accent ? 'text-accent' : ''} relative z-10`}
             >
               {m.value}
             </p>
-            <p class="mt-2 text-sm text-dim">{m.note}</p>
+            <p class="mt-2 text-sm text-dim relative z-10">{m.note}</p>
           </div>
         ))
       }

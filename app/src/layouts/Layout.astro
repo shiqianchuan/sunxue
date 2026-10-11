@@ -48,10 +48,31 @@ const canonical = `https://${PRIMARY_DOMAIN}/`;
   <body>
     <div class="page-glow" aria-hidden="true"></div>
     <div class="page-grid" aria-hidden="true"></div>
+
+    <!-- 悬浮粒子 -->
+    <div class="particles" aria-hidden="true">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+
+    <!-- 光标跟随效果 -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- 滚动进度条 -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
     <slot />
 
     <script define:vars={{ defaultBrandName: defaultBrand.name }}>
-      // 滚动入场动画
+      // ========== 滚动入场动画 ==========
       const io = new IntersectionObserver(
         (entries) => {
           entries.forEach((e) => {
@@ -63,7 +84,52 @@ const canonical = `https://${PRIMARY_DOMAIN}/`;
         },
         { threshold: 0.1 }
       );
-      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+      document.querySelectorAll('.reveal, .slide-left, .slide-right, .zoom-in').forEach((el) => io.observe(el));
+
+      // ========== 光标跟随效果 ==========
+      const cursorGlow = document.getElementById('cursorGlow');
+      let mouseX = 0, mouseY = 0;
+      let glowX = 0, glowY = 0;
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+
+      function animateGlow() {
+        glowX += (mouseX - glowX) * 0.1;
+        glowY += (mouseY - glowY) * 0.1;
+        if (cursorGlow) {
+          cursorGlow.style.left = glowX + 'px';
+          cursorGlow.style.top = glowY + 'px';
+        }
+        requestAnimationFrame(animateGlow);
+      }
+      animateGlow();
+
+      // ========== 滚动进度条 ==========
+      const scrollProgress = document.getElementById('scrollProgress');
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = scrollTop / docHeight;
+        if (scrollProgress) {
+          scrollProgress.style.transform = `scaleX(${progress})`;
+        }
+      });
+
+      // ========== 按钮波纹效果 ==========
+      document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          const rect = this.getBoundingClientRect();
+          const ripple = document.createElement('span');
+          ripple.className = 'ripple';
+          ripple.style.left = (e.clientX - rect.left) + 'px';
+          ripple.style.top = (e.clientY - rect.top) + 'px';
+          this.appendChild(ripple);
+          setTimeout(() => ripple.remove(), 600);
+        });
+      });
     </script>
   </body>
 </html>

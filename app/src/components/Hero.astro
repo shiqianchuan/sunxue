@@ -2,8 +2,43 @@
 // Section 01 — Hero
 ---
 
-<section id="top" class="relative">
-  <div class="max-w-6xl mx-auto px-5 sm:px-8 pt-20 sm:pt-28 pb-24 sm:pb-32">
+<section id="top" class="relative overflow-hidden">
+  <!-- 艺术 MV 背景 -->
+  <div class="absolute inset-0 z-0">
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      class="w-full h-full object-cover opacity-30"
+      poster="/favicon.svg"
+    >
+      <source src="/wukong-tokyo-sunset.mp4" type="video/mp4" />
+    </video>
+    <!-- 渐变遮罩 -->
+    <div class="absolute inset-0 bg-gradient-to-b from-bg/60 via-bg/40 to-bg"></div>
+  </div>
+
+  <!-- 背景音乐 + 筋斗云充值特效 -->
+  <div id="jintengyun-container" class="absolute inset-x-0 top-6 z-30 flex justify-center">
+    <button
+      id="jintengyun-btn"
+      type="button"
+      class="group flex flex-col items-center gap-2 px-5 py-4 border border-accent/50 rounded-xl bg-bg/90 backdrop-blur-sm hover:border-accent hover:bg-accent/10 transition-all duration-300 shadow-lg shadow-accent/20"
+      title="点击充值筋斗云，听首 BGM"
+    >
+      <span id="jintengyun-icon" class="text-3xl opacity-80 group-hover:opacity-100 transition-opacity cloud-ico">☁️</span>
+      <span class="font-mono text-[11px] text-accent tracking-wider">充能</span>
+    </button>
+    <div id="jintengyun-glow" class="w-2 h-2 rounded-full bg-accent/30 opacity-0 transition-opacity duration-500"></div>
+  </div>
+
+  <!-- 背景音乐 -->
+  <audio id="bgm" loop>
+    <source src="/moonlight-silhouette-jazz.mp3" type="audio/mpeg" />
+  </audio>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-5 sm:px-8 pt-20 sm:pt-28 pb-24 sm:pb-32">
     <!-- 状态标签 -->
     <div class="reveal inline-flex items-center gap-3 border border-line rounded-full px-4 py-2 mb-10 bg-card/60">
       <span class="pulse-dot" aria-hidden="true"></span>
@@ -24,6 +59,10 @@
     <p class="reveal reveal-d2 mt-8 max-w-2xl text-dim text-lg sm:text-xl leading-relaxed">
       一个年轻人听完四小时播客后，决定不再只做笔记，而是打开
       AI，亲手搭建一个网站。没有人脉、没有资源，那就先动手。
+      <br />
+      <span class="text-sm text-faint/70"
+        >* 其实是 Claude 叫我建的，但它说得有道理。</span
+      >
     </p>
 
     <!-- 英文强调语 -->
@@ -36,9 +75,9 @@
 
     <!-- CTA -->
     <div class="reveal reveal-d3 mt-12 flex flex-wrap gap-4">
-      <a href="#timeline" class="btn btn-primary">探索项目 ↓</a>
       <a href="#health" class="btn">大健康实验室</a>
       <a href="#contact" class="btn">联系与合作</a>
+      <a href="/transcript" class="btn btn-primary">播客转录</a>
     </div>
 
     <!-- 品牌条：随域名切换 -->
@@ -52,4 +91,39 @@
       <span data-brand="tagline">AI × Health × Learning × Action</span>
     </div>
   </div>
+
+  <script>
+    const btn = document.getElementById('jintengyun-btn');
+    const icon = document.getElementById('jintengyun-icon');
+    const glow = document.getElementById('jintengyun-glow');
+    const bgm = document.getElementById('bgm') as HTMLAudioElement;
+    const clouds = document.querySelectorAll<HTMLElement>('.cloud');
+
+    btn?.addEventListener('click', () => {
+      if (!bgm) return;
+      if (bgm.paused) {
+        bgm.volume = 0.4;
+        bgm.play();
+        // 充值特效
+        if (glow) { glow.style.opacity = '1'; glow.style.background = '#f59e0b'; glow.style.boxShadow = '0 0 12px 4px #f59e0b80'; }
+        if (icon) { icon.textContent = '☁️💨'; icon.style.transform = 'translateY(-4px)'; }
+        // 筋斗云冲刺特效
+        clouds.forEach(c => {
+          c.style.animation = 'none';
+          c.offsetHeight; // reflow
+          c.style.animation = 'jintengyun-rush 1.5s ease-in-out';
+        });
+        // 按钮文字变
+        const label = btn.querySelector('span:last-child');
+        if (label) label.textContent = '筋斗云';
+      } else {
+        bgm.pause();
+        bgm.currentTime = 0;
+        if (glow) { glow.style.opacity = '0.3'; glow.style.background = '#6b7280'; glow.style.boxShadow = 'none'; }
+        if (icon) { icon.textContent = '☁️'; icon.style.transform = ''; }
+        const label = btn.querySelector('span:last-child');
+        if (label) label.textContent = '充能';
+      }
+    });
+  </script>
 </section>

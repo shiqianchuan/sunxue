@@ -37,6 +37,26 @@ export const domainConfig: Record<string, DomainBrand> = {
     subtitle: '睡眠、恢复与健康',
     tagline: '睡眠 · 恢复 · 长期健康',
   },
+  'sunwukong.bio': {
+    name: 'SUNWUKONG',
+    subtitle: '孙学实践基地',
+    tagline: 'AI × Health × Learning × Action',
+  },
+  'swk.bio': {
+    name: 'SWK',
+    subtitle: '孙学实践基地',
+    tagline: 'AI × Health × Learning × Action',
+  },
+  'huangmao.club': {
+    name: 'HUANGMAO',
+    subtitle: '黄毛俱乐部',
+    tagline: '认知 · 执行 · 突破',
+  },
+  'boji.vc': {
+    name: 'BOJI VC',
+    subtitle: '搏击与创投',
+    tagline: '创业 · 投资 · 孵化',
+  },
 };
 
 /** 未知域名 / 本地开发时的默认品牌 */

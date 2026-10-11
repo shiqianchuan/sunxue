@@ -9,6 +9,7 @@ const statusMeta = {
 };
 ---
 
+{timeline.length > 0 && (
 <section id="timeline" class="border-t border-line golden-staff-bg">
   <div class="max-w-6xl mx-auto px-5 sm:px-8 py-24 sm:py-32">
     <div class="golden-bar reveal"></div>
@@ -65,10 +66,6 @@ const statusMeta = {
         }
       </ol>
     </div>
-
-    <p class="reveal mt-12 font-mono text-xs text-faint tracking-wide">
-      * 日志数据维护在 <code class="text-dim">src/data/timeline.ts</code
-      >，进度以项目真实状态为准。
-    </p>
   </div>
 </section>
+)}

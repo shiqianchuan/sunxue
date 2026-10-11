@@ -1,0 +1,249 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+// 播客基本信息
+const podcast = {
+  title: '邵艾伦 × 孙哥｜完整对话转录',
+  duration: '04:22:28',
+  date: '2025',
+  hosts: '邵艾伦 (Allen) × 孙哥',
+  tags: ['孙学', '薄肌', '黄毛', 'AI', 'Crypto', '财富自由', '人生哲学'],
+};
+
+// 核心主题摘要
+const themes = [
+  { emoji: '🧠', title: '认知升级', desc: '认知决定命运，孙学是大脑操作系统升级' },
+  { emoji: '💪', title: '薄肌理论', desc: '肌肉是身体的现金，二十五分心肺+二十五分肌肉=五十分' },
+  { emoji: '🟡', title: '黄毛思维', desc: '别人说什么不管，自己认定对了就充分执行' },
+  { emoji: '🤖', title: 'AI 武装', desc: '把整个人生流程 AI 化，百分百相信 AI' },
+  { emoji: '₿', title: 'Crypto', desc: '把货币翻译成机器能读懂的语言' },
+  { emoji: '🎮', title: '地球 Online', desc: '先探图再做决定，版本不断更新' },
+];
+---
+
+<Layout title="播客转录 | 邵艾伦 × 孙哥 — 孙学实践基地" description="邵艾伦与孙哥的完整播客对话转录，涵盖孙学、薄肌理论、黄毛思维、AI 实践与人生哲学。">
+  <Nav />
+  <main>
+    <!-- 顶部横幅 -->
+    <section class="border-b border-line golden-staff-bg">
+      <div class="max-w-5xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+        <div class="golden-bar reveal"></div>
+        <p class="section-label reveal mt-6">TRANSCRIPT · 播客转录</p>
+        <h1 class="reveal reveal-d1 mt-6 text-3xl sm:text-5xl font-black tracking-tight">
+          邵艾伦 × 孙哥<br />
+          <span class="text-gradient fire">四小时对话全文</span>
+        </h1>
+        <p class="reveal reveal-d2 mt-6 text-dim text-lg max-w-2xl leading-relaxed">
+          听 Claude 的话建网站，顺便把播客转成网页。
+          认知升级 + 薄肌理论 + 黄毛思维 + AI 实践 + 人生哲学，全在里面了。
+        </p>
+        <p class="reveal reveal-d3 mt-4 font-mono text-sm text-faint">
+          ⏱ {podcast.duration} · 📅 {podcast.date} · 🎙️ {podcast.hosts}
+        </p>
+
+        <!-- 标签 -->
+        <div class="reveal reveal-d4 mt-8 flex flex-wrap gap-2">
+          {podcast.tags.map(tag => (
+            <span class="font-mono text-xs px-3 py-1.5 border border-line rounded-full text-faint">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Claude 的指示 -->
+    <section class="border-b border-line">
+      <div class="max-w-5xl mx-auto px-5 sm:px-8 py-12">
+        <div class="reveal inline-flex items-center gap-2 border border-accent/40 bg-accent/5 rounded-full px-4 py-2 mb-8">
+          <span class="text-sm">🤖</span>
+          <span class="font-mono text-xs text-accent tracking-wider">CLAUDE SAID</span>
+        </div>
+        <blockquote class="reveal reveal-d1 text-xl sm:text-2xl font-bold leading-relaxed max-w-3xl">
+          "一个人，加上 AI，可以走多远？"
+          <footer class="mt-2 text-sm text-dim font-normal not-italic">
+            — 这是播客的核心问题，也是这个网站诞生的原因。
+          </footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- 核心主题 -->
+    <section class="border-b border-line">
+      <div class="max-w-5xl mx-auto px-5 sm:px-8 py-16">
+        <h2 class="reveal text-2xl font-bold">核心主题</h2>
+        <p class="reveal reveal-d1 mt-2 text-dim">听播客学到的主要理论</p>
+
+        <div class="reveal reveal-d2 mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {themes.map(theme => (
+            <div class="border border-line rounded-xl p-5 bg-card/30 hover:border-accent/30 transition-colors">
+              <span class="text-2xl">{theme.emoji}</span>
+              <h3 class="mt-3 font-bold">{theme.title}</h3>
+              <p class="mt-1 text-sm text-dim leading-relaxed">{theme.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 播客金句 -->
+    <section class="border-b border-line">
+      <div class="max-w-5xl mx-auto px-5 sm:px-8 py-16">
+        <h2 class="reveal text-2xl font-bold">金句摘录</h2>
+        <p class="reveal reveal-d1 mt-2 text-dim">听播客时值得 mark 下来的话</p>
+
+        <div class="reveal reveal-d2 mt-8 space-y-6 max-w-3xl">
+          <blockquote class="border-l-2 border-accent pl-6 py-2">
+            <p class="text-lg font-medium">"认知决定命运。其实都是认知，这就是黄毛、薄肌、crypto，都是认知，都是认知。"</p>
+            <footer class="mt-2 text-sm text-faint">— 孙哥</footer>
+          </blockquote>
+          <blockquote class="border-l-2 border-accent/50 pl-6 py-2">
+            <p class="text-lg font-medium">"先把图探了再做决定，这就是玩游戏的思路。"</p>
+            <footer class="mt-2 text-sm text-faint">— 孙哥</footer>
+          </blockquote>
+          <blockquote class="border-l-2 border-ink/50 pl-6 py-2">
+            <p class="text-lg font-medium">"薄肌是版本答案。练薄肌就是维护你的碳基服务器。"</p>
+            <footer class="mt-2 text-sm text-faint">— 孙哥</footer>
+          </blockquote>
+          <blockquote class="border-l-2 border-ink/30 pl-6 py-2">
+            <p class="text-lg font-medium">"财富自由是先自由后财富。你自由了，财富自然来。"</p>
+            <footer class="mt-2 text-sm text-faint">— 孙哥</footer>
+          </blockquote>
+          <blockquote class="border-l-2 border-faint/50 pl-6 py-2">
+            <p class="text-lg font-medium">"体验大于结论。先上路，比想清楚为什么上路更重要。"</p>
+            <footer class="mt-2 text-sm text-faint">— 孙哥</footer>
+          </blockquote>
+          <blockquote class="border-l-2 border-faint/30 pl-6 py-2">
+            <p class="text-lg font-medium">"不要先入为主。不要过早定型。触类旁通，多吸收。"</p>
+            <footer class="mt-2 text-sm text-faint">— 孙哥</footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- 转录正文 - 分段展示 -->
+    <section class="border-b border-line">
+      <div class="max-w-5xl mx-auto px-5 sm:px-8 py-16">
+        <h2 class="reveal text-2xl font-bold">完整转录</h2>
+        <p class="reveal reveal-d1 mt-2 text-dim">
+          播客时间轴：04:22:28 · 约 10 秒一个分段 · 共 9 部分
+        </p>
+
+        <!-- 第1部分 -->
+        <div class="reveal reveal-d2 mt-10 border border-line rounded-xl overflow-hidden">
+          <div class="bg-card/50 px-6 py-4 border-b border-line">
+            <h3 class="font-bold">第 1 部分 · 00:00:00–00:30:00</h3>
+            <p class="text-sm text-dim mt-1">薄肌实践 · AI 化管理 · 认知升级开始</p>
+          </div>
+          <div class="p-6 space-y-4 text-dim leading-relaxed">
+            <p><span class="text-accent font-mono text-sm">[00:00:00]</span> 今天您重新二十岁，没有人脉，没有资源，您会怎么重新开始？给年轻人的建议。</p>
+            <p><span class="text-accent font-mono text-sm">[00:00:10]</span> 太干货了，太干货。而且我觉得这一期 podcast 应该真的是能帮到很多人，这是实话。认知决定命运。其实都是认知，这就是黄毛、薄肌、crypto，都是认知。</p>
+            <p><span class="text-accent font-mono text-sm">[00:00:41]</span> 主持人：Hello，孙哥。我叫邵艾伦，Allen，是一个千万粉丝口语博主，也是薄肌理论的创始人。那很高兴今天可以获得这个采访的机会。</p>
+            <p><span class="text-accent font-mono text-sm">[00:01:21]</span> 孙哥：我现在一七二，大概七十五公斤左右，体脂大概二十九。</p>
+            <p><span class="text-accent font-mono text-sm">[00:02:12]</span> 孙哥：我现在就是起床之后，先工作，然后吃饭，把吃的都丢给 Claude，帮我算卡路里...吃第一餐，训练日就训练一下...训练日和非训练日刚好一天交叉一次。</p>
+            <p><span class="text-accent font-mono text-sm">[00:05:23]</span> 孙哥：所以我觉得就是最近就这个理论建设，就是打破了以前一个很陈旧的观念，就是说这蛋白粉这些东西是不是科技啊，会不会跟那个打药的那种感觉一样。后来我才明白，其实蛋白粉就跟吃鸡蛋一样。</p>
+            <p class="text-faint italic text-sm">... 时间戳 00:06:00–00:30:00 内容省略，完整转录在下方文件 ...</p>
+          </div>
+        </div>
+
+        <!-- 第2部分 -->
+        <div class="reveal reveal-d3 mt-6 border border-line rounded-xl overflow-hidden">
+          <div class="bg-card/50 px-6 py-4 border-b border-line">
+            <h3 class="font-bold">第 2 部分 · 00:30:00–01:00:00</h3>
+            <p class="text-sm text-dim mt-1">数学领域 · 天文学 · AI 时代的机会</p>
+          </div>
+          <div class="p-6 space-y-4 text-dim leading-relaxed">
+            <p><span class="text-accent font-mono text-sm">[00:30:10]</span> 嘉宾：数学这个领域，现在 AI 乱拳打死老师傅，什么 n 次方程，啪，我就给你解了。因为 AI 把全世界所有的思路都已经抓到模型里了。</p>
+            <p><span class="text-accent font-mono text-sm">[00:31:32]</span> 嘉宾：所以就是年轻人现在进入数学领域，太牛逼了。你要是懂 AI，相当于你分分钟十五岁的一个年轻人，把那个五十岁老教授分分钟乱拳打死，就这么简单。</p>
+            <p><span class="text-accent font-mono text-sm">[00:33:14]</span> 嘉宾：还有一个就是 AI 告诉我天文学会有本质性的进步，因为哈勃望远镜读了很多数据回来，但是都是大量的，就是没有人有时间处理。现在你要是加一个 AI 在那狂搞，天文学分分钟取得决定性突破。</p>
+            <p class="text-faint italic text-sm">... 时间戳 00:34:00–01:00:00 内容省略，完整转录在下方文件 ...</p>
+          </div>
+        </div>
+
+        <!-- 第3部分 -->
+        <div class="reveal reveal-d4 mt-6 border border-line rounded-xl overflow-hidden">
+          <div class="bg-card/50 px-6 py-4 border-b border-line">
+            <h3 class="font-bold">第 3 部分 · 01:00:00–01:30:00</h3>
+            <p class="text-sm text-dim mt-1">薄肌理论详解 · 寿命五十分理论 · 碳基 vs 硅基</p>
+          </div>
+          <div class="p-6 space-y-4 text-dim leading-relaxed">
+            <p><span class="text-accent font-mono text-sm">[01:00:50]</span> 嘉宾：碳基、硅基两边分配好，但现在我毕竟是个人，所以还是碳基的时间是最关键的。因为这个碳基它具有一票否决性，对吧？你直接给病倒，游戏就结束了。</p>
+            <p><span class="text-accent font-mono text-sm">[01:02:21]</span> 嘉宾：寿命一共一百分，二十五分是心肺，二十五分是肌肉，这两个东西就占了五十分。而练薄肌这两个都管上。你光跑步啊，掉肌肉，练那个心肺白练。</p>
+            <p><span class="text-accent font-mono text-sm">[01:03:22]</span> 嘉宾：练薄肌就像穿了一身传奇皮肤，一方面自动帮你烧脂肪，被动燃脂，睡觉就燃脂。而且还自带外伤，贴着就燃脂。</p>
+            <p class="text-faint italic text-sm">... 时间戳 01:04:00–01:30:00 内容省略，完整转录在下方文件 ...</p>
+          </div>
+        </div>
+
+        <!-- 剩余部分预览 -->
+        <div class="reveal mt-8 border border-line rounded-xl overflow-hidden">
+          <div class="bg-card/50 px-6 py-4 border-b border-line">
+            <h3 class="font-bold">第 4–9 部分 · 01:30:00–04:22:28</h3>
+            <p class="text-sm text-dim mt-1">剩余 3.5 小时内容，包含：商业赛道建议、财富自由理论、婚姻观、人生意义、体验论</p>
+          </div>
+          <div class="p-6 text-dim">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <h4 class="font-bold text-ink">第 4 部分 · 01:30:00–02:00:00</h4>
+                <p class="text-sm">逐水草而居 · 全球商机发现 · 买房买车建议 · 看一百套房理论</p>
+              </div>
+              <div class="space-y-2">
+                <h4 class="font-bold text-ink">第 5 部分 · 02:00:00–02:30:00</h4>
+                <p class="text-sm">Crypto 自媒体 · TRON 解析 · Token 中转站 · 财富配置</p>
+              </div>
+              <div class="space-y-2">
+                <h4 class="font-bold text-ink">第 6 部分 · 02:30:00–03:00:00</h4>
+                <p class="text-sm">版本更新理论 · 地球 Online · Ego 管理 · 认知决定命运</p>
+              </div>
+              <div class="space-y-2">
+                <h4 class="font-bold text-ink">第 7 部分 · 03:00:00–03:30:00</h4>
+                <p class="text-sm">财富自由定义 · 先自由后财富 · 雪球理论 · 中彩票的诅咒</p>
+              </div>
+              <div class="space-y-2">
+                <h4 class="font-bold text-ink">第 8 部分 · 03:30:00–04:00:00</h4>
+                <p class="text-sm">人生意义探讨 · 体验论 · Benchmark 选择 · North Star</p>
+              </div>
+              <div class="space-y-2">
+                <h4 class="font-bold text-ink">第 9 部分 · 04:00:00–04:22:28</h4>
+                <p class="text-sm">创造 vs 消费 · 柳暗花明 · 随机性与规划 · 触类旁通</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 完整转录下载 -->
+        <div class="reveal mt-10 p-6 border border-accent/30 bg-accent/5 rounded-xl">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h3 class="font-bold">完整转录文件</h3>
+              <p class="mt-1 text-sm text-dim">
+                3125 行 · {podcast.duration} · 含所有 9 个部分的时间戳和完整对话
+              </p>
+            </div>
+            <a
+              href="/transcript.md"
+              download="邵艾伦与孙哥对话-完整转录.md"
+              class="btn btn-primary whitespace-nowrap"
+            >
+              📥 下载 .md 文件
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 底部 CTA -->
+    <section class="border-b border-line">
+      <div class="max-w-5xl mx-auto px-5 sm:px-8 py-16 text-center">
+        <p class="reveal text-dim">Claude 让我建网站，我顺便把播客转成网页。</p>
+        <p class="reveal reveal-d1 mt-2 text-lg font-bold">现在轮到你了。</p>
+        <div class="reveal reveal-d2 mt-8 flex flex-wrap justify-center gap-4">
+          <a href="/#timeline" class="btn btn-primary">探索项目 →</a>
+          <a href="/#health" class="btn">大健康实验室</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

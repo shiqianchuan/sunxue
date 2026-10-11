@@ -615,3 +615,10 @@ body:hover .cursor-glow {
   0%, 100% { transform: translateX(0); opacity: 0.2; }
   50% { transform: translateX(10px); opacity: 0.35; }
 }
+
+@keyframes jintengyun-rush {
+  0% { transform: translateX(0) translateY(0); opacity: 0.2; }
+  30% { transform: translateX(30px) translateY(-20px); opacity: 1; }
+  70% { transform: translateX(-20px) translateY(15px); opacity: 0.8; }
+  100% { transform: translateX(0) translateY(0); opacity: 0.2; }
+}

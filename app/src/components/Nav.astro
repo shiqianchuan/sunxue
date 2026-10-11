@@ -14,6 +14,8 @@
         data-brand="name">SUN STUDIES</span
       >
     </a>
+
+    <!-- 桌面端导航 -->
     <ul class="hidden md:flex items-center gap-8 font-mono text-[13px] text-dim">
       <li><a class="hover:text-accent transition-colors" href="/#timeline">日志</a></li>
       <li><a class="hover:text-accent transition-colors" href="/#health">大健康</a></li>
@@ -27,5 +29,53 @@
         >
       </li>
     </ul>
+
+    <!-- 移动端汉堡按钮 -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden p-2 -mr-2 text-dim hover:text-accent transition-colors"
+      aria-label="打开菜单"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
   </nav>
+
+  <!-- 移动端下拉菜单 -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-line bg-bg/95 backdrop-blur-md">
+    <ul class="max-w-6xl mx-auto px-5 py-4 flex flex-col gap-1 font-mono text-[14px] text-dim">
+      <li><a class="block py-2 hover:text-accent transition-colors" href="/#timeline">日志</a></li>
+      <li><a class="block py-2 hover:text-accent transition-colors" href="/#health">大健康</a></li>
+      <li><a class="block py-2 hover:text-accent transition-colors" href="/#domains">域名</a></li>
+      <li><a class="block py-2 hover:text-accent transition-colors" href="/transcript">转录</a></li>
+      <li>
+        <a
+          href="#contact"
+          class="block py-2 text-accent hover:bg-accent hover:text-bg transition-colors"
+          >合作</a
+        >
+      </li>
+    </ul>
+  </div>
 </header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  if (btn && menu) {
+    btn.addEventListener('click', () => {
+      const open = menu.classList.toggle('hidden');
+      btn.setAttribute('aria-expanded', String(!open));
+    });
+    // 点击菜单链接后关闭
+    menu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>

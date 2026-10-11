@@ -20,7 +20,7 @@ const statusMeta = {
       一个人，加上 AI，<br />可以走多远？<span class="monkey-decor">🐉</span>
     </h2>
 
-    <div class="reveal reveal-d2 mt-16 relative pl-12 max-w-3xl">
+    <div class="reveal reveal-d2 mt-16 relative pl-10 sm:pl-12 max-w-3xl">
       <div class="timeline-rail" aria-hidden="true"></div>
       <ol class="space-y-10">
         {
@@ -50,7 +50,7 @@ const statusMeta = {
                 <span class="font-mono text-sm text-accent tracking-wider">
                   {entry.phase}
                 </span>
-                <h3 class="text-xl font-bold">{entry.title}</h3>
+                <h3 class="text-lg sm:text-xl font-bold">{entry.title}</h3>
                 <span
                   class={`ml-auto font-mono text-[11px] tracking-widest border rounded-full px-3 py-1 ${statusMeta[entry.status].cls}`}
                 >

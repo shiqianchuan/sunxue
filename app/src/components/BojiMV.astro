@@ -1,0 +1,125 @@
+---
+// Section — BOJI MV 独立板块（金箍棒触发播放）
+---
+
+<section id="boji-mv" class="border-t border-line">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-24 sm:py-32">
+    <p class="section-label reveal">BOJI · THEORY</p>
+    <h2 class="reveal reveal-d1 mt-8 text-3xl sm:text-5xl font-extrabold tracking-tight">
+      薄肌不是终点，<br />是起点。
+    </h2>
+    <p class="reveal reveal-d2 mt-6 text-dim text-lg max-w-2xl leading-relaxed">
+      点击金箍棒，播放孙哥的薄肌理论。
+    </p>
+
+    <!-- 播放按钮卡片 -->
+    <div class="reveal reveal-d2 mt-14 flex justify-center">
+      <button
+        id="boji-mv-trigger"
+        class="group relative w-40 h-40 rounded-full flex items-center justify-center
+               bg-card border border-line hover:border-accent/60 transition-all duration-500
+               hover:scale-105 active:scale-95"
+        aria-label="播放 BOJI THEORY 视频"
+      >
+        <!-- 外圈光环 -->
+        <span class="absolute inset-0 rounded-full border border-accent/20 animate-ping" style="animation-duration: 3s;"></span>
+        <span class="absolute inset-3 rounded-full border border-accent/10"></span>
+
+        <!-- 金箍棒图标（Bo Staff） -->
+        <svg
+          viewBox="0 0 64 64"
+          class="w-16 h-16 text-accent transition-transform duration-500 group-hover:rotate-12"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <!-- 棒身 -->
+          <line x1="12" y1="52" x2="52" y2="12"/>
+          <!-- 上金箍 -->
+          <rect x="47" y="7" width="10" height="4" rx="1" transform="rotate(45 52 9)"/>
+          <!-- 下金箍 -->
+          <rect x="5" y="49" width="10" height="4" rx="1" transform="rotate(45 10 51)"/>
+          <!-- 中间纹路 -->
+          <line x1="24" y1="40" x2="28" y2="36"/>
+          <line x1="32" y1="32" x2="36" y2="28"/>
+        </svg>
+      </button>
+    </div>
+
+    <p class="reveal mt-8 text-center font-mono text-xs text-faint">
+      点击播放 · 5 分钟 · BOJI-THEORY
+    </p>
+  </div>
+</section>
+
+<!-- 视频 Modal -->
+<div
+  id="boji-mv-modal"
+  class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 backdrop-blur-sm"
+  role="dialog"
+  aria-modal="true"
+  aria-label="BOJI THEORY 视频"
+>
+  <!-- 关闭按钮 -->
+  <button
+    id="boji-mv-close"
+    class="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center rounded-full
+           bg-white/10 hover:bg-white/20 text-white transition-colors"
+    aria-label="关闭视频"
+  >
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+    </svg>
+  </button>
+
+  <!-- 视频容器 -->
+  <div class="w-full max-w-4xl mx-4 aspect-video bg-black rounded-lg overflow-hidden shadow-2xl">
+    <video
+      id="boji-mv-video"
+      class="w-full h-full"
+      controls
+      playsinline
+      preload="metadata"
+    >
+      <source src="/videos/boji-mv.mp4" type="video/mp4" />
+      你的浏览器不支持视频播放。
+    </video>
+  </div>
+</div>
+
+<script>
+  const trigger = document.getElementById('boji-mv-trigger');
+  const modal = document.getElementById('boji-mv-modal');
+  const video = document.getElementById('boji-mv-video') as HTMLVideoElement;
+  const closeBtn = document.getElementById('boji-mv-close');
+
+  function openModal() {
+    modal?.classList.remove('hidden');
+    modal?.classList.add('flex');
+    video?.play().catch(() => {});
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal?.classList.add('hidden');
+    modal?.classList.remove('flex');
+    video?.pause();
+    video && (video.currentTime = 0);
+    document.body.style.overflow = '';
+  }
+
+  trigger?.addEventListener('click', openModal);
+  closeBtn?.addEventListener('click', closeModal);
+
+  // 点击背景关闭
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  // ESC 关闭
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>

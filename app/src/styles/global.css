@@ -481,3 +481,137 @@ body:hover .cursor-glow {
   outline-offset: 3px;
   border-radius: 4px;
 }
+
+/* ========== 孙悟空元素 ========== */
+
+/* 金箍棒分隔线 */
+.golden-bar::before {
+  content: "☰";
+  font-size: 1.5rem;
+  color: var(--color-accent);
+  display: block;
+  text-align: center;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 8px var(--color-accent));
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+@keyframes glow-pulse {
+  0%, 100% { filter: drop-shadow(0 0 8px var(--color-accent)); }
+  50% { filter: drop-shadow(0 0 15px var(--color-accent)); }
+}
+
+/* 筋斗云漂浮 */
+.cloud {
+  position: fixed;
+  font-size: 2rem;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: -1;
+  animation: float-cloud 30s linear infinite;
+}
+.cloud-1 { top: 15%; left: -5%; animation-delay: 0s; }
+.cloud-2 { top: 35%; right: -5%; animation-delay: -8s; animation-duration: 35s; }
+.cloud-3 { top: 60%; left: 10%; animation-delay: -15s; animation-duration: 28s; }
+.cloud-4 { top: 80%; right: 15%; animation-delay: -22s; animation-duration: 32s; }
+@keyframes float-cloud {
+  0% { transform: translateX(0) translateY(0); }
+  25% { transform: translateX(5vw) translateY(-3vh); }
+  50% { transform: translateX(10vw) translateY(0); }
+  75% { transform: translateX(5vw) translateY(3vh); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+/* 紧箍咒光环 */
+.headband {
+  position: relative;
+  display: inline-block;
+}
+.headband::before {
+  content: "☉";
+  position: absolute;
+  top: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  color: var(--color-accent);
+  animation: ring-glow 2.5s ease-in-out infinite;
+  text-shadow: 0 0 10px var(--color-accent), 0 0 20px var(--color-accent);
+}
+@keyframes ring-glow {
+  0%, 100% { opacity: 0.7; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+}
+
+/* 火焰效果 */
+.fire {
+  position: relative;
+}
+.fire::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  border-radius: 50%;
+  filter: blur(2px);
+  animation: fire-flicker 0.5s ease-in-out infinite alternate;
+}
+@keyframes fire-flicker {
+  0% { opacity: 0.5; width: 55%; }
+  100% { opacity: 1; width: 65%; }
+}
+
+/* 猴子图标装饰 */
+.monkey-decor {
+  display: inline-block;
+  font-size: 1.5rem;
+  margin: 0 0.3em;
+  animation: monkey-hop 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 5px var(--color-accent));
+}
+@keyframes monkey-hop {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  25% { transform: translateY(-8px) rotate(5deg); }
+  50% { transform: translateY(0) rotate(-3deg); }
+  75% { transform: translateY(-4px) rotate(3deg); }
+}
+
+/* 金箍棒背景装饰 */
+.golden-staff-bg {
+  position: relative;
+}
+.golden-staff-bg::before {
+  content: "│";
+  position: absolute;
+  right: 2rem;
+  top: 0;
+  bottom: 0;
+  font-size: 8rem;
+  color: var(--color-accent);
+  opacity: 0.03;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  pointer-events: none;
+}
+
+/* 祥云装饰 */
+.cloud-decor {
+  position: relative;
+}
+.cloud-decor::before {
+  content: "☁";
+  position: absolute;
+  top: -2rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  color: var(--color-accent);
+  opacity: 0.2;
+  animation: cloud-drift 8s ease-in-out infinite;
+}
+@keyframes cloud-drift {
+  0%, 100% { transform: translateX(0); opacity: 0.2; }
+  50% { transform: translateX(10px); opacity: 0.35; }
+}

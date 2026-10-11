@@ -1,0 +1,107 @@
+---
+// Section 06 — 四个域名（点击展开详情）
+const domains = [
+  {
+    host: 'SUNWUKONG.HEALTH',
+    theme: '孙悟空健康实验室',
+    keywords: ['探索', '突破', '健康科技'],
+    scene: '主品牌入口。大闹天宫的劲头，用在对抗衰老与理解生命上。',
+    status: '主站 · 开放合作',
+  },
+  {
+    host: 'SUWUKONG.HEALTH',
+    theme: '创意实验项目',
+    keywords: ['品牌', '创意', '实验'],
+    scene: '品牌创意入口。不强行解释，留给未来的某个实验。',
+    status: '保留 · 开放合作',
+  },
+  {
+    host: 'BOJI.HEALTH',
+    theme: '搏击与身体管理',
+    keywords: ['运动', '训练', '健康'],
+    scene: '适合训练记录、体能管理、运动社区——把每一次训练当成回合制。',
+    status: '待启动 · 开放合作',
+  },
+  {
+    host: 'DASHUI.HEALTH',
+    theme: '睡眠与恢复科学',
+    keywords: ['睡眠', '恢复', '长期健康'],
+    scene: '适合睡眠追踪、恢复科学内容——毕竟，睡觉是最便宜的养生。',
+    status: '待启动 · 开放合作',
+  },
+];
+---
+
+<section id="domains" class="border-t border-line">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-24 sm:py-32">
+    <p class="section-label reveal">06 / Core Assets — 四个域名</p>
+    <h2 class="reveal reveal-d1 mt-8 text-3xl sm:text-5xl font-extrabold tracking-tight">
+      四个域名，四种可能。
+    </h2>
+    <p class="reveal reveal-d2 mt-6 text-dim text-lg max-w-2xl leading-relaxed">
+      全部指向同一个网站，各自保留一个方向。点击卡片查看设想。
+    </p>
+
+    <div class="mt-14 grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {
+        domains.map((d, i) => (
+          <button
+            type="button"
+            class={`domain-card card reveal reveal-d${(i % 2) + 1} p-8 text-left w-full`}
+            aria-expanded="false"
+          >
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h3 class="font-mono text-lg sm:text-xl font-bold tracking-wide break-all">
+                  {d.host}
+                </h3>
+                <p class="mt-2 text-ink/90 font-medium">{d.theme}</p>
+              </div>
+              <svg
+                class="chevron w-5 h-5 text-faint shrink-0 mt-1"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                aria-hidden="true"
+              >
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {d.keywords.map((k) => (
+                <span class="font-mono text-[11px] tracking-wider text-dim border border-line rounded-full px-3 py-1">
+                  {k}
+                </span>
+              ))}
+            </div>
+            <div class="domain-detail">
+              <div>
+                <p class="pt-5 text-dim leading-relaxed border-t border-line/60 mt-5">
+                  {d.scene}
+                </p>
+                <p class="pt-3 font-mono text-xs text-accent tracking-widest">
+                  合作状态 / {d.status}
+                </p>
+              </div>
+            </div>
+          </button>
+        ))
+      }
+    </div>
+
+    <p class="reveal mt-8 text-faint text-sm">
+      四个域名共用同一套代码，根据访问域名自动切换品牌副标题——你现在看到的就是。
+    </p>
+  </div>
+
+  <script>
+    document.querySelectorAll('.domain-card').forEach((card) => {
+      card.addEventListener('click', () => {
+        const open = card.classList.toggle('open');
+        card.setAttribute('aria-expanded', String(open));
+      });
+    });
+  </script>
+</section>

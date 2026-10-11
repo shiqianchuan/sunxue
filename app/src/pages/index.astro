@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Dashboard from '../components/Dashboard.astro';
+import Lessons from '../components/Lessons.astro';
+import Timeline from '../components/Timeline.astro';
+import HealthLab from '../components/HealthLab.astro';
+import Domains from '../components/Domains.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+  <Nav />
+  <main>
+    <Hero />
+    <Dashboard />
+    <Lessons />
+    <Timeline />
+    <HealthLab />
+    <Domains />
+    <Contact />
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  import { domainConfig, defaultBrand } from '../config/domains';
+
+  // 多域名品牌切换：四个域名共用一套代码，按 hostname 换品牌
+  const host = window.location.hostname;
+  const brand = domainConfig[host] ?? defaultBrand;
+
+  document.querySelectorAll<HTMLElement>('[data-brand="name"]').forEach((el) => {
+    el.textContent = brand.name;
+  });
+  document
+    .querySelectorAll<HTMLElement>('[data-brand="subtitle"]')
+    .forEach((el) => {
+      el.textContent = brand.subtitle;
+    });
+  document
+    .querySelectorAll<HTMLElement>('[data-brand="tagline"]')
+    .forEach((el) => {
+      el.textContent = brand.tagline;
+    });
+
+  // 非默认域名时，页面标题同步品牌名（基础 SEO 适配）
+  if (brand !== defaultBrand) {
+    document.title = `${brand.subtitle} — ${brand.name} · 孙哥，播客听完了，网站已经上线了`;
+  }
+</script>

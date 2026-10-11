@@ -1,0 +1,32 @@
+---
+// 顶部导航：品牌名随域名切换（data-brand 属性由客户端脚本填充）
+---
+
+<header class="sticky top-0 z-50 backdrop-blur-md bg-bg/80 border-b border-line">
+  <nav
+    class="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between"
+    aria-label="主导航"
+  >
+    <a href="#top" class="flex items-baseline gap-2.5 group">
+      <span class="font-extrabold tracking-tight text-lg">孙学实践基地</span>
+      <span
+        class="font-mono text-[11px] tracking-[0.18em] text-accent"
+        data-brand="name">SUN STUDIES</span
+      >
+    </a>
+    <ul class="hidden md:flex items-center gap-8 font-mono text-[13px] text-dim">
+      <li><a class="hover:text-accent transition-colors" href="#dashboard">进度</a></li>
+      <li><a class="hover:text-accent transition-colors" href="#lesson">第一课</a></li>
+      <li><a class="hover:text-accent transition-colors" href="#timeline">日志</a></li>
+      <li><a class="hover:text-accent transition-colors" href="#health">大健康</a></li>
+      <li><a class="hover:text-accent transition-colors" href="#domains">域名</a></li>
+      <li>
+        <a
+          href="#contact"
+          class="text-accent border border-accent/40 rounded-full px-4 py-1.5 hover:bg-accent hover:text-bg transition-colors"
+          >合作</a
+        >
+      </li>
+    </ul>
+  </nav>
+</header>

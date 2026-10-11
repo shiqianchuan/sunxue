@@ -1,0 +1,45 @@
+---
+// Section 07 — 合作与收购（mailto 方案，邮箱在 src/config/domains.ts 配置）
+import { CONTACT_EMAIL } from '../config/domains';
+
+const coopMailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+  '【孙学实践基地】合作意向'
+)}&body=${encodeURIComponent('你好，我想聊聊合作：\n\n（请简单介绍你和你的想法）\n')}`;
+const domainMailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+  '【孙学实践基地】域名购买咨询'
+)}&body=${encodeURIComponent(
+  '你好，我对以下域名感兴趣：sunwukong.health / suwukong.health / boji.health / dashui.health\n\n我的报价与用途：\n'
+)}`;
+---
+
+<section id="contact" class="border-t border-line">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-24 sm:py-32">
+    <p class="section-label reveal">07 / Open for Deals — 合作与收购</p>
+    <h2
+      class="reveal reveal-d1 mt-8 text-3xl sm:text-5xl font-extrabold tracking-tight max-w-3xl"
+    >
+      项目刚开始，<br />但欢迎提前交流。
+    </h2>
+
+    <div class="reveal reveal-d2 mt-8 max-w-2xl space-y-5 text-dim text-lg leading-relaxed">
+      <p>
+        这是一个由 AI 辅助完成的独立实践项目。如果你喜欢这个创意，希望合作、收购相关域名，或者交流
+        AI 与健康科技领域的想法，欢迎联系。
+      </p>
+      <p class="text-ink text-xl font-medium">
+        如果孙哥本人看到了：网站可以谈，<span class="text-accent"
+          >作业希望给个 A。</span
+        >
+      </p>
+    </div>
+
+    <div class="reveal reveal-d3 mt-12 flex flex-wrap gap-4">
+      <a href={coopMailto} class="btn btn-primary">提交合作意向 →</a>
+      <a href={domainMailto} class="btn">咨询域名购买</a>
+    </div>
+
+    <p class="reveal mt-8 font-mono text-xs text-faint leading-relaxed max-w-xl">
+      联系入口通过邮件直达站主本人（{CONTACT_EMAIL}）。这里没有冒充任何官方联系方式，也没有虚构的合作方。
+    </p>
+  </div>
+</section>

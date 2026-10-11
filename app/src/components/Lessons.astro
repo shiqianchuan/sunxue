@@ -1,0 +1,54 @@
+---
+// Section 03 — 孙学第一课
+const steps = [
+  '购买域名',
+  '使用 AI 规划网站',
+  '编写代码',
+  '部署到 Cloudflare',
+  '公开展示成果',
+  '根据反馈持续迭代',
+];
+---
+
+<section id="lesson" class="border-t border-line">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-24 sm:py-32">
+    <p class="section-label reveal">03 / Lesson One — 孙学第一课</p>
+    <h2
+      class="reveal reveal-d1 mt-8 text-3xl sm:text-5xl font-extrabold tracking-tight max-w-3xl"
+    >
+      不要只研究成功，<span class="text-accent">先动手。</span>
+    </h2>
+
+    <div class="mt-14 grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+      <div class="reveal reveal-d2 space-y-6 text-dim text-lg leading-relaxed">
+        <p>
+          听完播客，我记住了一个重要的行动原则：<span class="text-ink"
+            >与其无限等待资源、团队和完美时机，不如先利用现有工具，完成一个最小可行产品。</span
+          >
+        </p>
+        <p>
+          这是我对播客内容的个人理解和行动，不是嘉宾的逐字原话。但网站本身，就是这份理解的证据。
+        </p>
+        <p class="font-mono text-sm text-faint border-l-2 border-accent/50 pl-4">
+          "我没有先融资。我先把网站部署了。"
+        </p>
+      </div>
+
+      <ol class="reveal reveal-d3 space-y-0">
+        {
+          steps.map((s, i) => (
+            <li class="flex items-center gap-5 py-4 border-b border-line/60 last:border-b-0 group">
+              <span class="font-mono text-sm text-faint w-8 shrink-0 group-hover:text-accent transition-colors">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <span class="text-lg text-ink/90">{s}</span>
+              <span class="ml-auto font-mono text-xs text-accent/70 opacity-0 group-hover:opacity-100 transition-opacity">
+                {i < 4 ? 'DONE' : 'ONGOING'}
+              </span>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </div>
+</section>

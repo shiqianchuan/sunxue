@@ -1,0 +1,43 @@
+---
+// Section 08 — Footer（年份自动获取）
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-line">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-10">
+      <div>
+        <p class="font-black text-3xl tracking-tight" data-brand="name">
+          SUN STUDIES
+        </p>
+        <p class="mt-2 font-mono text-xs tracking-[0.25em] text-accent">
+          AI × HEALTH × ACTION
+        </p>
+        <p class="mt-4 text-dim text-sm">
+          Made by a human, accelerated by AI.
+        </p>
+      </div>
+      <nav aria-label="页脚导航">
+        <ul
+          class="flex flex-wrap gap-x-7 gap-y-2 font-mono text-xs text-dim tracking-wider"
+        >
+          <li><a class="hover:text-accent transition-colors" href="#dashboard">进度</a></li>
+          <li><a class="hover:text-accent transition-colors" href="#timeline">日志</a></li>
+          <li><a class="hover:text-accent transition-colors" href="#health">大健康</a></li>
+          <li><a class="hover:text-accent transition-colors" href="#domains">域名</a></li>
+          <li><a class="hover:text-accent transition-colors" href="#contact">合作</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <p class="mt-14 pt-8 border-t border-line/60 text-faint text-xs leading-relaxed max-w-4xl">
+      免责声明：本站为独立个人学习与创意实践项目，与孙宇晨及其关联企业、项目不存在官方合作或授权关系。本站内容不构成投资建议或医疗建议。文中涉及的播客观点均为作者个人理解与转述，不代表嘉宾原话。
+    </p>
+    <div
+      class="mt-6 flex flex-wrap justify-between gap-3 font-mono text-[11px] text-faint/80 tracking-[0.15em]"
+    >
+      <span>© {year} <span data-brand="name">SUN STUDIES</span></span>
+      <span>人脉 0 · 热情 ∞ · 域名续费自由追求中</span>
+    </div>
+  </div>
+</footer>

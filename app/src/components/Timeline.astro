@@ -1,0 +1,73 @@
+---
+// Section 04 — AI 实践日志（数据来自 src/data/timeline.ts）
+import { timeline } from '../data/timeline';
+
+const statusMeta = {
+  done: { label: '已完成', cls: 'text-accent border-accent/50' },
+  doing: { label: '进行中', cls: 'text-ink border-ink/50' },
+  next: { label: '待探索', cls: 'text-faint border-line' },
+};
+---
+
+<section id="timeline" class="border-t border-line">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-24 sm:py-32">
+    <p class="section-label reveal">04 / Build Log — AI 实践日志</p>
+    <h2
+      class="reveal reveal-d1 mt-8 text-3xl sm:text-5xl font-extrabold tracking-tight max-w-3xl"
+    >
+      一个人，加上 AI，<br />可以走多远？
+    </h2>
+
+    <div class="reveal reveal-d2 mt-16 relative pl-12 max-w-3xl">
+      <div class="timeline-rail" aria-hidden="true"></div>
+      <ol class="space-y-10">
+        {
+          timeline.map((entry) => (
+            <li class="relative">
+              <span
+                class={`absolute -left-12 top-1.5 w-[23px] h-[23px] rounded-full border bg-bg flex items-center justify-center ${
+                  entry.status === 'done'
+                    ? 'border-accent/60'
+                    : entry.status === 'doing'
+                      ? 'border-ink/60'
+                      : 'border-line'
+                }`}
+                aria-hidden="true"
+              >
+                <span
+                  class={`w-2 h-2 rounded-full ${
+                    entry.status === 'done'
+                      ? 'bg-accent'
+                      : entry.status === 'doing'
+                        ? 'bg-ink pulse-dot'
+                        : 'bg-line'
+                  }`}
+                />
+              </span>
+              <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                <span class="font-mono text-sm text-accent tracking-wider">
+                  {entry.phase}
+                </span>
+                <h3 class="text-xl font-bold">{entry.title}</h3>
+                <span
+                  class={`ml-auto font-mono text-[11px] tracking-widest border rounded-full px-3 py-1 ${statusMeta[entry.status].cls}`}
+                >
+                  {statusMeta[entry.status].label}
+                </span>
+              </div>
+              <p class="mt-2 text-dim leading-relaxed">{entry.detail}</p>
+              {entry.date && (
+                <p class="mt-1 font-mono text-xs text-faint">{entry.date}</p>
+              )}
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+
+    <p class="reveal mt-12 font-mono text-xs text-faint tracking-wide">
+      * 日志数据维护在 <code class="text-dim">src/data/timeline.ts</code
+      >，进度以项目真实状态为准。
+    </p>
+  </div>
+</section>

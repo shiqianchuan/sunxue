@@ -1,0 +1,44 @@
+---
+// Section 02 — 项目仪表盘
+const metrics = [
+  { label: '人脉资源', value: '从零积累中', note: '目前总量：0', accent: false },
+  { label: '技术团队', value: '1 Human + AI', note: '人不多，但够用', accent: true },
+  { label: '启动资金', value: '域名续费预算', note: '全部身家都在这了', accent: false },
+  { label: '商业模式', value: '正在探图', note: '地图加载中…', accent: false },
+  { label: '项目进度', value: 'MVP Building', note: '网站先行，其余随后', accent: true },
+  { label: '长期目标', value: 'AI × Health', note: '方向明确，路还很长', accent: false },
+];
+---
+
+<section id="dashboard" class="border-t border-line">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-24 sm:py-32">
+    <p class="section-label reveal">02 / Dashboard — 项目仪表盘</p>
+    <h2 class="reveal reveal-d1 mt-8 text-3xl sm:text-5xl font-extrabold tracking-tight">
+      创业进度，实时汇报。
+    </h2>
+
+    <div class="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {
+        metrics.map((m, i) => (
+          <div class={`card reveal reveal-d${(i % 3) + 1} p-7`}>
+            <p class="font-mono text-[11px] tracking-[0.25em] text-faint uppercase">
+              {m.label}
+            </p>
+            <p
+              class={`mt-4 text-2xl sm:text-[1.7rem] font-bold tracking-tight ${m.accent ? 'text-accent' : ''}`}
+            >
+              {m.value}
+            </p>
+            <p class="mt-2 text-sm text-dim">{m.note}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="reveal mt-10 text-dim leading-relaxed max-w-2xl">
+      别人追求财富自由，我先争取<span class="text-accent font-medium"
+        >「域名续费自由」</span
+      >。以上指标均为真实创业状态，不含任何虚构财务数据。
+    </p>
+  </div>
+</section>
